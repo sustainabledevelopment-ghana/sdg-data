@@ -1,6 +1,6 @@
 language: python
 python:
-  - "3.6"
+- '3.6'
 sudo: false
 git:
   depth: false
@@ -9,13 +9,13 @@ branches:
   - master
   - develop
 install:
-  - pip install -r scripts/requirements.txt
+- pip install -r scripts/requirements.txt
 before_script:
-  - chmod +x ./scripts/*.py
-  - chmod +x ./scripts/deploy/*.sh
+- chmod +x ./scripts/*.py
+- chmod +x ./scripts/deploy/*.sh
 script:
-  - python ./scripts/check_data.py
-  - python ./scripts/build_data.py
+- python ./scripts/check_data.py
+- python ./scripts/build_data.py
 deploy:
 - provider: script
   script: bash scripts/deploy/deploy_staging.sh
@@ -27,3 +27,6 @@ deploy:
   skip_cleanup: true
   on:
     branch: master
+before_install:
+- openssl aes-256-cbc -K $encrypted_25492e6fe4ee_key -iv $encrypted_25492e6fe4ee_iv
+  -in keys.tar.enc -out keys.tar -d
